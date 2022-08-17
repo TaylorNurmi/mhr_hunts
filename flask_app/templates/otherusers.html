@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>MHR Hunts</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body class="sunbreak">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand" href="/home">MONSTER HUNTER RISE HUNTS</a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/monsters">MONSTERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">SIGN OUT</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container" style="justify-content: space-between; background-color: #2A2A2A; padding-top: 40px; width: 1800px;">
+        <div class="pfp">
+            <h2>{{users.hunter_name}}</h2>
+            {% if users.pfp == None %}
+                <img src="/static/img/default_pfp_Palico.webp" alt="" class="propic">
+            {% else %}
+                <img src="{{ pic }}" alt="" class="propic">
+            {% endif %}
+            <h2><u>Weapon Usage</u></h2>
+            <ol>
+                {% for weapon in weapons %}
+                    <li>{{ weapon }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="hunterfeed">
+            <div>
+                {% for hunt in hunts %}
+                    <div>
+                        {% if users.id == hunt.user_id %}
+                            <p>{{ hunt.name }}</p>
+                            <img src="{{ hunt.picture }} " alt="" class="hunt">
+                            <div class="hunt_specs" style="display: flex;">
+                                <p>{{ hunt.weapon_name }} | {{ hunt.hunt_minutes }}:{{hunt.hunt_seconds}}&nbsp;</p> 
+                                {% set count = namespace(value=0) %}
+                                {% for like in likes %}
+                                    {% if like.hunt_id == hunt.id %}
+                                        {% set count.value = count.value + 1 %}
+                                    {% endif %}
+                                {% endfor %}
+                                <p> | {{ count.value }} </p>
+                                <form action="/add_like" method="post">
+                                    <input type="hidden" value= {{ session['user_id'] }} name="user_id" >
+                                    <input type="hidden" value= {{ hunt.id }} name="hunt_id" >
+                                    <input type="submit" value=" Like(s) " name="add_like" class="contribute_button">
+                                </form> 
+                                <button type="button" onclick="ShowAndHide(this)" class="contribute_button" style="margin-top: -14px;"> | Comments</button>
+                            </div>
+                            <div class="card card-body" style="display: none;">
+                                {% if hunt.comments != None %}
+                                    <p class="black">{{ hunt.comments }}</p>
+                                {% endif %}
+                                {% for comment in hunt_comments %}
+                                    {% if comment.hunt_id  == hunt.id %}
+                                        <div class="user_comment">
+                                            <p class="black">{{comment.hunter_name}}</p>
+                                            <img src="{{comment.pfp}}" alt="user" class="mini_icon">
+                                            <p class="black">: {{ comment.content }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <form action="/addcomment" method="post" id = "add_comment">
+                                    <input type="hidden" value= {{ session['user_id'] }} name="user_id" >
+                                    <input type="hidden" value= {{ hunt.id }} name="hunt_id" >
+                                    <textarea class="form-control" id="add_comment" name="comment_text" rows="2" required></textarea>
+                                    <input type="submit" value="Add Comment" name="add_comment">
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="hunterconnect">
+            <h3 style="padding-right: 6px;">Hunter Connect </h3>
+            {% for user in all_users %}
+                {% if user.id != users.id and user.id != session['user_id'] %}
+                    {% if user.pfp == None %}
+                        <p><img src="/static/img/default_pfp_Palico.webp" alt="" class="mini_icon"> <a href="/user/{{user.id}}">{{ user.hunter_name }}</a></p>
+                    {% else %}
+                        <p><img src="{{ user.pfp }}" alt="" class="mini_icon"> <a href="/user/{{user.id}}">{{ user.hunter_name }}</a></p>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <script src="/static/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>MHR Hunts</title>
+</head>
+    <body class="landing">
+        <div class="contain">
+            <div id="signup">
+                <h1>Lets Get Hunting</h1>
+                <form action="/signup" method="post">
+                    <div class="mb-3">
+                        <label for="hunter_name" class="form-label">Hunter Name:</label>
+                        <input type="text" class="form-control" id="hunter_name" name="hunter_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email:</label>
+                        <input type="text" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm" class="form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirm" name="confirm">
+                    </div>
+                    <input type="submit" value="Join the Guild" name="submit" class="button">
+                    <button class="button"><a href="/">Login</a></button>
+                </form>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="red">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" style="width: 750px;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="\static\img\magnamalo.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="\static\img\Palico.png" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="\static\img\Palimute.png" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="\static\img\voli.png" class="d-block" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+        <footer id="footer">Images from Monster Hunter Rise from Capcom.</footer>
+    </body>
+</html>

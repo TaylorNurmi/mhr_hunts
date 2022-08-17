@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Hunt Results</title>
+</head>
+<body id="monster_page">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand" href="/home">MONSTER HUNTER RISE HUNTS</a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/monsters">MONSTERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">SIGN OUT</a>
+            </li>
+        </ul>
+    </nav>
+    <h1 class="title-center">Check Out These Monsties!</h1>
+    <div class="container_grid">
+        {% for monster in monsters %}
+            <div class="moncard" style="background-image: url('{{monster.picture}}'); background-size: 350px 260px;">
+                <h1 class="outline_text">{{monster.name}}</h1>
+                <div class="monlink">
+                    <a href="/newhunt/{{ monster.id }}" class="outline_text">Add Hunt</a>
+                    <a href="/monster/{{ monster.id }}" class="outline_text">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

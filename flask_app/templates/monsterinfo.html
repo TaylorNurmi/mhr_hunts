@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Hunt Results</title>
+</head>
+<body class="jungle">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand" href="/home">MONSTER HUNTER RISE HUNTS</a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/monsters">MONSTERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">SIGN OUT</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container grey_bg" style="justify-content: space-around;">
+        <div class="monstie">
+            <div class="monheader">
+                <h1>{{ monster.name }}</h1>
+                <a href="/newhunt/{{ monster.id }}">Add Hunt</a>
+            </div>
+            <img src="{{ monster.picture }}" alt="monster" class="single_monstie">
+            <p>{{ monster.description }}</p>
+        </div>
+        <div class="thismonhunt">
+        <h1>{{ monster.name }} Recent Hunts</h1>
+            <div class="overflow_recent_hunts_per_monstie">
+                {% for hunt in hunts %}
+                    {% if hunt.monster_id == monster.id %}
+                        {% if hunt.pfp == None %}
+                            <p><img src="/static/img/default_pfp_Palico.webp" alt="" class="mini_icon">{{ hunt.hunter_name }} | {{ hunt.weapon_name }} | {{ hunt.hunt_minutes }}:{{hunt.hunt_seconds}}</p>
+                        {% else %}
+                            <p><img src="{{ hunt.pfp }}" alt="" class="mini_icon"> {{ hunt.hunter_name }} | {{ hunt.weapon_name }} | {{ hunt.hunt_minutes }}:{{hunt.hunt_seconds}}</p>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

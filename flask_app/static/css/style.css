@@ -1,0 +1,159 @@
+.landing, table  {
+    background-image: url("/static/img/background.webp");
+    background-color: #cccccc;
+}
+.jungle {
+    background-image: url("/static/img/junglebg.jpg");
+    background-size: cover;
+}
+.flagship {
+    background-image: url("/static/img/lebg.jpg");
+    background-size: cover;
+}
+.sunbreak {
+    background-image: url("/static/img/MHR-SUNBREAK_Key-art.jpg");
+    background-size: cover;
+}
+.black {
+    color: #2A2A2A;
+}
+body, .button, .firstaction, a, th, td, .btn, .contribute_button {
+    color: antiquewhite;
+    font-weight: 500;
+}
+.outline_text, .title-center{
+    -webkit-text-stroke: 1px #2A2A2A;
+}
+p, a, th, td, form, li {
+    font-size: x-large;
+}
+.container, .contain, .pfp, #checks, .moncard, .monlink, .monheader, .user_comment, .navbar {
+    display: flex;
+}
+.propic {
+    border-radius: 50%;
+    width: 230px;
+    height: 230px;
+}
+li {
+    list-style: none;
+}
+.contain {
+    margin-top: 30px;
+}
+#monster_page, .grey_bg {
+    background-color: #2A2A2A;
+}
+.grey_bg {
+    padding: 40px;
+    margin-left: 150px;
+}
+.moncard, .pfp, .contain, .monheader {
+    justify-content: space-between;
+}
+.monlink {
+    justify-content: space-evenly;
+    width: 200px;
+}
+.single_monstie {
+    height: 500px;
+}
+.single_monstie, .monster, .d-block, .hunt, .monstie, .card, .hunt_specs {
+    width: 650px;
+}
+.hunterfeed  {
+    width: 750px;
+}
+.monster, .d-block, .hunt {
+    margin-right: 60px;
+}
+.moncard {
+    margin: 10px;
+    border: 2px solid antiquewhite;
+    height: 260px;
+    width: 350px;
+}
+#signup {
+    margin-left: 200px;
+}
+#footer{
+    position:fixed;
+    bottom:0;
+    left:0;
+}
+.button, .firstaction {
+    background-color: #193F48;
+    font-size: larger;
+}
+.moncard, .pfp{
+    flex-direction: column;
+    align-items: center;
+}
+.pfp{
+    width: 300px;
+    height: 860px;
+}
+.hunterfeed, .title-center {
+    text-align: center;
+}
+.hunterfeed {
+    padding-left: 60px;
+}
+.container_grid {
+    width: 1600px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr;
+} 
+.hunterconnect, .hunterfeed {
+    border-left: solid 2px antiquewhite;
+    padding-left: 20px;
+}
+.comment_box {
+    background-color: antiquewhite;
+}
+.form-popup {
+    display: none;
+    position: relative;
+    left: 76px;
+    top: 10px
+}
+.comment_box, .form-popup {
+    display: none;
+}
+.mini_icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.comments_button {
+    position: relative;
+    left: 500px;
+}
+.user_comment, .hunt_specs {
+    justify-content: center;
+}
+.overflow_recent_hunts_per_monstie, .hunterconnect {
+    overflow: auto;
+    height: 850px;
+}
+.hunterconnect {
+    width: 248px;
+}
+.hunterfeed {
+    padding-left: 50px;
+}
+.navbar {
+    justify-content: space-between;
+}
+.contribute_button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    cursor: pointer;
+    font-size: 24px;
+}
+.red {
+    background-color: red;
+}
+
