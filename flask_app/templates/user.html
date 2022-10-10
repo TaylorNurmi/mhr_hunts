@@ -53,6 +53,10 @@
                 {% for hunt in hunts %}
                     <div>
                         <p>{{ hunt.hunter_name }} | {{ hunt.name }}</p>
+                        {% if hunt.user_id ==  session['user_id'] %}
+                            <a href="">Edit</a>
+                            <a href="">Delete</a>
+                        {% endif %}
                         <img src="{{ hunt.picture }} " alt="" class="hunt">
                         <div class="hunt_specs" style="display: flex;">
                             <p>{{ hunt.weapon_name }} | {{ hunt.hunt_minutes }}:{{hunt.hunt_seconds}}&nbsp;</p> 

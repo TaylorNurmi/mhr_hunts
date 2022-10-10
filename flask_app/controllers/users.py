@@ -56,7 +56,7 @@ def addpfp():
         relative_path = os.path.relpath(path)
         relative_path = list(relative_path)
         for i in range(len(relative_path)):
-            if relative_path[i] == '\'' or relative_path[i] == '\\':
+            if relative_path[i] == '\`' or relative_path[i] == "\\":
                 relative_path[i] = "/"
             elif i <= 8:
                 relative_path[i] = ""
