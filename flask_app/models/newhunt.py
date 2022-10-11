@@ -30,6 +30,33 @@ class Hunt:
         return connectToMySQL("mhr_hunts").query_db(query, data)
 
     @classmethod
+    def delete(cls,data):
+        query = "DELETE FROM hunts WHERE hunts.id = %(id)s"
+        return connectToMySQL('mhr_hunts').query_db(query, data)
+
+    @classmethod
+    def delete_likes(cls,data):
+        query = "DELETE FROM post_likes WHERE hunt_id = %(id)s"
+        return connectToMySQL('mhr_hunts').query_db(query, data)
+
+    @classmethod
+    def delete_comments(cls,data):
+        query = "DELETE FROM comments WHERE hunt_id = %(id)s"
+        return connectToMySQL('mhr_hunts').query_db(query, data)
+
+
+
+    @classmethod
+    def update( cls , data ):
+        query = "UPDATE hunts SET hunt_minutes = %(hunt_minutes)s, hunt_seconds = %(hunt_seconds)s, weapon_name = %(weapon_name)s, comments = %(comments)s, party_size = %(party_size)s where hunts.id = %(id)s;"
+        return connectToMySQL('mhr_hunts').query_db( query, data )
+
+    @classmethod
+    def get_one_hunt(cls, data):
+        query = "SELECT * FROM hunts where id = %(id)s"
+        return connectToMySQL('mhr_hunts').query_db( query, data )
+
+    @classmethod
     def get_newhunt_by_maxid(cls):
         query = "SELECT MAX(id) from hunts"
         return connectToMySQL("mhr_hunts").query_db(query)

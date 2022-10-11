@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Hunt Results</title>
+</head>
+<body class="flagship">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <a class="navbar-brand" href="/home">MONSTER HUNTER RISE HUNTS</a>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/monsters">MONSTERS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">SIGN OUT</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="contain">
+        <div class="grey_bg" style="border-radius: 20%;">
+            <form action="/updatehunt" method="post" id = "add">
+                <h2>Post A New Hunt!</h2>
+                <input type="hidden" value={{ session["hunt_id"] }}>
+                <div class="mb-3">
+                    <label for="hunt_minutes" class="form-label">Minutes:</label>
+                    <input type="number" class="form-control" id="hunt_minutes" name="hunt_minutes" placeholder="{{ hunt.hunt_minutes }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="hunt_seconds" class="form-label">Seconds:</label>
+                    <input type="number" class="form-control" id="hunt_seconds" name="hunt_seconds" placeholder="{{ hunt.hunt_seconds}}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="weapon_name" class="form-label">Weapon:</label>
+                    <select name="weapon_name" id="weapon" form="add">
+                        <option selected>Weapon Type</option>
+                        <option value="Great Sword">Great Sword</option>
+                        <option value="Long Sword">Long Sword</option>
+                        <option value="Sword & Shield">Sword & Shield</option>
+                        <option value="Duel Blades">Duel Blades</option>
+                        <option value="Lance">Lance</option>
+                        <option value="Gunlance">Gunlance</option>
+                        <option value="Hammer">Hammer</option>
+                        <option value="Hunting Horn">Hunting Horn</option>
+                        <option value="Switch Axe">Switch Axe</option>
+                        <option value="Charge Blade">Charge Blade</option>
+                        <option value="Insect Glaive">Insect Glaive</option>
+                        <option value="Light Bowgun">Light Bowgun</option>
+                        <option value="Heavy Bowgun">Heavy Bowgun</option>
+                        <option value="Bow">Bow</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="comments" class="form-label">Comments:</label>
+                    <textarea class="form-control" id="comments" name="comments" rows="4" placeholder="{{ hunt.comments }}"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="rank" class="form-label">Hunt Rank:</label>
+                    <select name="rank" id="rank" form="add">
+                        <option selected>Choose One</option>
+                        <option value="Low">Low</option>
+                        <option value="High">High</option>
+                        <option value="Master">Master</option>
+                        <option value="Afflicted">Afflicted</option>
+                    </select>
+                </div>
+                <div id="checks">
+                    <p>Party Size:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="party_size" id="party_size" value="1" checked="checked">
+                        <label class="form-check-label" for="flexRadioDefault1">1</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="party_size" id="party_size" value="2">
+                        <label class="form-check-label" for="flexRadioDefault2">2</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="party_size" id="party_size" value="3" checked="checked">
+                        <label class="form-check-label" for="flexRadioDefault1">3</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="party_size" id="party_size" value="4">
+                        <label class="form-check-label" for="flexRadioDefault2">4</label>
+                    </div>
+                </div>
+                <input type="submit" value="Add Hunt" name="add">
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="red">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

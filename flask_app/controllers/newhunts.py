@@ -54,3 +54,36 @@ def like_hunt():
         }
     Hunt.like_hunt(data)
     return redirect("/home")
+
+@app.route("/delete/<int:id>", methods = ["post"])
+def delete(id):
+    data = {
+        "id": id
+    }
+    Hunt.delete_likes(data)
+    Hunt.delete_comments(data)
+    Hunt.delete(data)
+    return redirect("/home")
+
+@app.route('/edit/<int:id>')
+def edit(id):
+    data = {
+        "id": id
+    }
+    hunt = Hunt.get_one_hunt(data)
+    session['hunt_id'] = id
+    return render_template("edithunt.html", hunt = hunt[0])
+
+
+@app.route('/updatehunt', methods = ["post"])
+def update():
+    data = {
+        "id": session['hunt_id'],
+        "hunt_minutes": request.form['hunt_minutes'],
+        "hunt_seconds": request.form['hunt_seconds'],
+        "weapon_name": request.form['weapon_name'],
+        "comments": request.form['comments'],
+        "party_size": request.form['party_size']
+    }
+    Hunt.update(data)
+    return redirect("/home")
