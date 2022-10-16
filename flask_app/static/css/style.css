@@ -27,7 +27,7 @@ body, .button, .firstaction, a, th, td, .btn, .contribute_button {
 p, a, th, td, form, li {
     font-size: x-large;
 }
-.container, .contain, .pfp, #checks, .moncard, .monlink, .monheader, .user_comment, .navbar {
+.container, .contain, .pfp, #checks, .moncard, .monlink, .monheader, .user_comment, .navbar, .yourhunt {
     display: flex;
 }
 .propic {
@@ -130,7 +130,7 @@ li {
     position: relative;
     left: 500px;
 }
-.user_comment, .hunt_specs {
+.user_comment, .hunt_specs, .yourhunt {
     justify-content: center;
 }
 .overflow_recent_hunts_per_monstie, .hunterconnect {
@@ -156,4 +156,20 @@ li {
 .red {
     background-color: red;
 }
+
+.butlink {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    color: #FAEBD7;
+    cursor: pointer;
+    }
+
+.nodeco {
+    text-decoration: none;
+}
+.butlink:hover {
+    color: #069;
+}
+
 

@@ -49,16 +49,18 @@
         </div>
         <div class="hunterfeed">
             <a href="/monsters"><button type="button" class="btn btn-outline-secondary contribute_button"><u>Post A New Hunt</u></button></a>
-            <div>
+            <div id="evenbigger">
                 {% for hunt in hunts %}
                     <div>
-                        <p>{{ hunt.hunter_name }} | {{ hunt.name }}</p>
-                        {% if hunt.user_id ==  session['user_id'] %}
-                            <a href="/edit/{{ hunt.id }}">Edit</a>
-                            <form action="/delete/{{ hunt.id }}" method="post">
-                                <button type="submit">Delete</button>                                
-                            </form>
-                        {% endif %}
+                        <div class="yourhunt text-center">
+                            <p>{{ hunt.hunter_name }} | {{ hunt.name }} </p>
+                            {% if hunt.user_id == session['user_id'] %}
+                                <a class="nodeco" href="/edit/{{ hunt.id }}">| Edit |</a>
+                                <form action="/delete/{{ hunt.id }}" method="post">
+                                    <button class="butlink" type="submit"> Delete</button>                                
+                                </form>
+                            {% endif %}
+                        </div>
                         <img src="{{ hunt.picture }} " alt="" class="hunt">
                         <div class="hunt_specs" style="display: flex;">
                             <p>{{ hunt.weapon_name }} | {{ hunt.hunt_minutes }}:{{hunt.hunt_seconds}}&nbsp;</p> 
@@ -72,7 +74,7 @@
                             <form action="/add_like" onsubmit="return ajaxpost(id)" id="{{hunt.id}}">
                                 <input type="hidden" value= {{ session['user_id'] }} name="user_id">
                                 <input type="hidden" value= {{ hunt.id }} name="hunt_id" id="hunt_id">
-                                <input type="submit" value=" Like(s) " name="add_like" class="contribute_button" onclick="upLike(id)" id="count{{hunt.id}}">
+                                <input type="submit" value=" Like(s) " name="add_like" class="contribute_button" onclick="upLike(id), showComment(id)" id="count{{hunt.id}}">
                             </form> 
                             <button type="button" onclick="ShowAndHide(this)" class="contribute_button" style="margin-top: -14px;"> | Comments</button>
                         </div>
@@ -82,14 +84,14 @@
                             {% endif %}
                             {% for comment in hunt_comments %}
                                 {% if comment.hunt_id  == hunt.id %}
-                                    <div class="user_comment">
+                                    <div class="user_comment{{ hunt.id }} yourhunt" id="user_comment{{ hunt.id }}">
                                         <p class="black">{{comment.hunter_name}}</p>
                                         {% if comment.pfp == None %}
                                             <img src="/static/img/default_pfp_Palico.webp" alt="" class="mini_icon">
                                         {% else %}
                                             <img src="{{ comment.pfp }}" alt="" class="mini_icon"> 
                                         {% endif %}
-                                        <p class="black">: {{ comment.content }}</p>
+                                        <p class="black comment{{ hunt.id }}">: {{ comment.content }}</p>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -97,7 +99,7 @@
                                 <input type="hidden" value= {{ session['user_id'] }} name="user_id" >
                                 <input type="hidden" value= {{ hunt.id }} name="hunt_id" >
                                 <textarea class="form-control" id="add_comment" name="comment_text" rows="2" required></textarea>
-                                <input type="submit" value="Add Comment" name="add_comment" onclick="showComment()">
+                                <input type="submit" value="Add Comment" name="add_comment" id="{{hunt.id}}" onclick="showComment(id)">
                             </form>
                         </div>
                     </div>

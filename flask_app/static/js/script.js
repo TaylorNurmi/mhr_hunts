@@ -61,6 +61,13 @@ function ajaxcomment (elem) {
     // (C) PREVENT HTML FORM SUBMIT
     return false;
 }
-function showComment(elem) {
-    alert("Comment Added!")
+function showComment(id) {
+    currentDiv = document.querySelector(".user_comment" + id);
+    $("#evenbigger").load(location.href + " #evenbigger"); 
+    redirect("#user_comment" + id);
+}
+function redirect(id) {
+    $('#home').click(function(){
+        $(document).scrollTop(100) // any value you need
+        });
 }
